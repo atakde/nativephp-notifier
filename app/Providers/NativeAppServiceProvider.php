@@ -17,53 +17,16 @@ class NativeAppServiceProvider
      */
     public function boot(): void
     {
+        // MenuBar::create()
+        // ->alwaysOnTop();
+
+        $refreshLink = sprintf('%s://refresh', config('nativephp.deeplink_scheme'));
         MenuBar::create()
-        ->alwaysOnTop();
-        // MenuBar::create()->withContextMenu(
-        //     Menu::new()
-        //         ->label('My Application')
-        //         ->separator()
-        //         ->link('https://nativephp.com', 'Learn more…')
-        //         ->separator()
-        //         ->quit()
-        // );
-        // Menu::new()
-        //     ->appMenu()
-        //     ->submenu('About', Menu::new()
-        //         ->link('https://beyondco.de', 'Beyond Code')
-        //         ->link('https://simonhamp.me', 'Simon Hamp')
-        //     )
-        //     ->submenu('View', Menu::new()
-        //         ->toggleFullscreen()
-        //         ->separator()
-        //         ->link('https://laravel.com', 'Learn More', 'CmdOrCtrl+L')
-        //     )
-        //     ->register();
-
-        // Window::open()
-        //     ->width(800)
-        //     ->height(800);
-
-        /**
-            Dock::menu(
+            ->route('menu-bar-home')->showDockIcon()->withContextMenu(
                 Menu::new()
-                    ->event(DockItemClicked::class, 'Settings')
-                    ->submenu('Help',
-                        Menu::new()
-                            ->event(DockItemClicked::class, 'About')
-                            ->event(DockItemClicked::class, 'Learn More…')
-                    )
+                    ->link($refreshLink, 'Refresh', 'CmdOrCtrl+R')
+                    ->separator()
+                    ->quit()
             );
-
-            ContextMenu::register(
-                Menu::new()
-                    ->event(ContextMenuClicked::class, 'Do something')
-            );
-
-            GlobalShortcut::new()
-                ->key('CmdOrCtrl+Shift+I')
-                ->event(ShortcutPressed::class)
-                ->register();
-        */
     }
 }

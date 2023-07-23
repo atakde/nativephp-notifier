@@ -16,11 +16,11 @@
     </head>
     <body class="antialiased bg-gradient-to-r from-gray-100 to-blue-100">
         <div class="m-4">
-          <div class="flex items-center justify-between">
+          <div class="flex items-center justify-between border-b border-slate-400/25 pb-4">
             <span class="font-semibold text-gray-600 text-sm">2 new job offers!</span>
-            <img class="cursor-pointer" width="16" height="16" src="https://www.svgrepo.com/show/335437/new-window.svg" alt="logo" />
+            <img class="cursor-pointer" width="16" height="16" src="{{ asset('images/new-window.svg') }}" alt="logo" />
           </div>
-          <div class="mt-2 divide-y divide-slate-400/25">
+          <div class="mt-0 divide-y divide-slate-400/25">
             <div class="flex flex-col gap-4 py-4">
               <div class="flex items-center gap-4">
                 <div>
@@ -34,28 +34,7 @@
                   <div class="flex gap-4 text-sm text-gray-600">
                     <small>Full-time</small>
                     <div class="flex gap-1">
-                      <img class="cursor-pointer" width="12" height="12" src="https://www.svgrepo.com/show/480834/earth-8.svg" />
-                      <small>Ankara / Turkey</small>
-                    </div>
-                    <small>2 days ago</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="flex flex-col gap-4 py-4">
-              <div class="flex items-center gap-4">
-                <div>
-                  <img src="https://picsum.photos/32/32" alt="logo" />
-                </div>
-                <div>
-                  <div>
-                    <small class="text-gray-600">Cloudways</small>
-                    <h3 class="font-semibold">Laravel And Vue.js Developer</h3>
-                  </div>
-                  <div class="flex gap-4 text-sm text-gray-600">
-                    <small>Full-time</small>
-                    <div class="flex gap-1">
-                      <img class="cursor-pointer" width="12" height="12" src="https://www.svgrepo.com/show/480834/earth-8.svg" />
+                      <img class="cursor-pointer" width="12" height="12" src="{{ asset('images/earth.svg') }}" />
                       <small>Ankara / Turkey</small>
                     </div>
                     <small>2 days ago</small>
