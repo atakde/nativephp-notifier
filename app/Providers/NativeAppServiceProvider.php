@@ -21,6 +21,8 @@ class NativeAppServiceProvider
         // MenuBar::create()
         // ->alwaysOnTop();
 
+        FetchRSS::dispatch();
+
         Menu::new()
             ->appMenu()
             ->submenu(
@@ -40,7 +42,6 @@ class NativeAppServiceProvider
         Window::open()
             ->width(800)
             ->height(800);
-
         // $refreshLink = sprintf('%s://refresh', config('nativephp.deeplink_scheme'));
         // MenuBar::create()
         //     ->route('menu-bar-home')->showDockIcon()->withContextMenu(

@@ -10,12 +10,11 @@ use Illuminate\Database\Eloquent\Collection;
 
 class NotificationController extends Controller
 {
-    public function fetch(): void
+    public function fetch()
     {
         $rss = Feed::loadRss('https://larajobs.com/feed-test');
         $client = new Client();
-
-        $notExistsNotifications = new Collection();
+        $notExistsNotifications = [];
         $allNotifications = NotificationModel::all();
 
         foreach ($rss->item as $item) {
@@ -24,40 +23,38 @@ class NotificationController extends Controller
                 continue;
             }
 
-            if (!$allNotifications->contains('guid', $guid)) {
+
+            if (!$allNotifications->contains('guid', '=', $guid)) {
                 $notificationModel = new NotificationModel([
                     'guid' => $guid,
-                    'link' => $item->link,
-                    'title' => $item->title,
-                    'creator' => $item->creator,
-                    'category' => $item->category,
-                    'pubDate' => $item->pubDate
+                    'link' => array_values((array)$item->link)[0] ?? '',
+                    'title' => array_values((array)$item->title)[0] ?? '',
+                    'creator' => array_values((array)$item->{'dc:creator'})[0] ?? '',
+                    'category' => array_values((array)$item->category)[0] ?? '',
+                    'pubDate' => array_values((array)$item->pubDate)[0] ?? ''
                 ]);
-
                 $notificationModel->save();
 
-                $notExistsNotifications->push($notificationModel);
+                $notExistsNotifications[] = $notificationModel;
             }
         }
 
-        if ($notExistsNotifications->isNotEmpty()) {
+        if (!empty($notExistsNotifications)) {
             $notification = new Notification($client);
-            $newMessageCount = $notExistsNotifications->count();
+            $newMessageCount = count($notExistsNotifications);
             if ($newMessageCount > 1) {
                 $notification->title("There are $newMessageCount jobs available !")
                 ->message('Click to see jobs')
                 ->show();
             } else {
-                $onlyNotification = $notExistsNotifications->pop();
+                $onlyNotification = $notExistsNotifications[0];
                 $notification->title($onlyNotification->title)
                 ->message("Click to see job description!")
                 ->show();
             }
         }
 
-        foreach ($notExistsNotifications as $notify) {
-            echo $notify->title . "\n";
-        }
+        return $notExistsNotifications;
     }
 
     public function getGuid($link) {

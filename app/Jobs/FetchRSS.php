@@ -26,7 +26,6 @@ class FetchRSS implements ShouldQueue
      */
     public function handle(): void
     {
-        Log::info('worked!');
         $rss = Feed::loadRss('https://larajobs.com/feed-test');
         $client = new Client();
 
@@ -68,10 +67,6 @@ class FetchRSS implements ShouldQueue
                 ->message("Click to see job description!")
                 ->show();
             }
-        }
-
-        foreach ($notExistsNotifications as $notify) {
-            echo $notify->title . "\n";
         }
     }
 

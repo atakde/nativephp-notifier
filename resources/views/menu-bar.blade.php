@@ -15,7 +15,7 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
     </head>
     <body class="antialiased bg-gradient-to-r from-gray-100 to-blue-100">
-        <div class="m-4">
+        <div id="list" class="m-4">
           <div class="flex items-center justify-between border-b border-slate-400/25 pb-4">
             <span class="font-semibold text-gray-600 text-sm">{{ $data->count() }} new job offers!</span>
             <img class="cursor-pointer" width="16" height="16" src="{{ asset('images/new-window.svg') }}" alt="logo" />
