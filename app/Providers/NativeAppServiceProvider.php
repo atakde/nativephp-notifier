@@ -17,16 +17,16 @@ class NativeAppServiceProvider
      */
     public function boot(): void
     {
-        // MenuBar::create()
-        // ->showDockIcon();
-        MenuBar::create()->withContextMenu(
-            Menu::new()
-                ->label('My Application')
-                ->separator()
-                ->link('https://nativephp.com', 'Learn more…')
-                ->separator()
-                ->quit()
-        );
+        MenuBar::create()
+        ->alwaysOnTop();
+        // MenuBar::create()->withContextMenu(
+        //     Menu::new()
+        //         ->label('My Application')
+        //         ->separator()
+        //         ->link('https://nativephp.com', 'Learn more…')
+        //         ->separator()
+        //         ->quit()
+        // );
         // Menu::new()
         //     ->appMenu()
         //     ->submenu('About', Menu::new()

@@ -11,12 +11,12 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $client = new Client();
-        $notification = new Notification($client);
-        $notification->title('Hello from NativePHP')
-            ->message('This is a detail message coming from your Laravel app.')
-            ->show();
+        // $client = new Client();
+        // $notification = new Notification($client);
+        // $notification->title('Hello from NativePHP')
+        //     ->message('This is a detail message coming from your Laravel app.')
+        //     ->show();
         MenuBar::show();
-        return view('welcome');
+        return view('menu-bar');
     }
 }
