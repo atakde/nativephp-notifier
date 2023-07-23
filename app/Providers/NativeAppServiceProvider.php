@@ -20,13 +20,33 @@ class NativeAppServiceProvider
         // MenuBar::create()
         // ->alwaysOnTop();
 
-        $refreshLink = sprintf('%s://refresh', config('nativephp.deeplink_scheme'));
-        MenuBar::create()
-            ->route('menu-bar-home')->showDockIcon()->withContextMenu(
+        Menu::new()
+            ->appMenu()
+            ->submenu(
+                'About',
                 Menu::new()
-                    ->link($refreshLink, 'Refresh', 'CmdOrCtrl+R')
+                    ->link('https://nativephp.com', 'NativePHP')
+            )
+            ->submenu(
+                'View',
+                Menu::new()
+                    ->toggleFullscreen()
                     ->separator()
-                    ->quit()
-            );
+                    ->toggleDevTools()
+            )
+            ->register();
+
+        Window::open()
+            ->width(800)
+            ->height(800);
+
+        // $refreshLink = sprintf('%s://refresh', config('nativephp.deeplink_scheme'));
+        // MenuBar::create()
+        //     ->route('menu-bar-home')->showDockIcon()->withContextMenu(
+        //         Menu::new()
+        //             ->link($refreshLink, 'Refresh', 'CmdOrCtrl+R')
+        //             ->separator()
+        //             ->quit()
+        //     );
     }
 }
