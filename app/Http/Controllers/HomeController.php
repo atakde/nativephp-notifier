@@ -2,21 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Notification as NotificationModel;
 use Native\Laravel\Client\Client;
 use Native\Laravel\Facades\MenuBar;
 use Native\Laravel\Notification;
+use Feed;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Notifications\Notification as NotificationsNotification;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        // $client = new Client();
-        // $notification = new Notification($client);
-        // $notification->title('Hello from NativePHP')
-        //     ->message('This is a detail message coming from your Laravel app.')
-        //     ->show();
-        MenuBar::show();
-        return view('menu-bar');
+        $notViewed = NotificationModel::notViewed();
+        return view('menu-bar')->with('data', $notViewed);
     }
 }

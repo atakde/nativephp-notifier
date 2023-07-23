@@ -19,3 +19,5 @@ use Illuminate\Support\Facades\Route;
 // ->show();
 
 Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home');
+
+Route::get('/fetch', 'App\Http\Controllers\NotificationController@fetch')->name('fechh');

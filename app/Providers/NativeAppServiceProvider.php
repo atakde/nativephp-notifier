@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Jobs\FetchRSS;
 use Native\Laravel\Facades\ContextMenu;
 use Native\Laravel\Facades\Dock;
 use Native\Laravel\Facades\MenuBar;
